@@ -3,10 +3,19 @@ const multer = require('multer')
 const multerConfig = require('./config/multer')
 
 
-routes.post('/posts', multer(multerConfig).single('file'), (req , resp) => {
-    console.log(req.file)
+const Post = require('./models/Post')
 
-    return resp.json({ hello: 'world' })
+routes.post('/posts', multer(multerConfig).single('file'), async(req , resp) => {
+    const {originalname: name, size, filename: key} =req.file
+
+    const post = await Post.create({
+        name,
+        size,
+        key,
+        url:'',
+    })
+
+    return resp.json(post)
 })
 
 
