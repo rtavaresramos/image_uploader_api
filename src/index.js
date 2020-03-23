@@ -7,9 +7,10 @@ const app = express()
 // Database setup
 
 mongoose.connect(
-    "mongodb://localhost:27017/upload",
+    "mongodb+srv://omnistack:omnistack@cluster0-gamwm.mongodb.net/uploader?retryWrites=true&w=majority",
     {
-        useNewUrlParser: true
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
     })
 
 
